@@ -1,2 +1,8 @@
-# ProjectTemplate
-copy this code into your own repository, and use it for your project as you see fit!
+# Team 248 Readme for - GeoDemo App
+
+***Server Side*** 
+
+ - Database is now connected successfully to Team 248's server
+
+
+* * * * * * * * *
