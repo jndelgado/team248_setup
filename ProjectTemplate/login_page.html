@@ -11,12 +11,13 @@
 
 
         // Figure out how to pass parameters uid and pass into WebMethod "LogOn" found in ProjectServices.asmx
-        function LogOn() {
-            var username = document.getElementById("user").value;
-            var password = document.getElementById("pass").value;
+        function LogOn(username, password) {
+            //var username = document.getElementById("user").value;
+            //var password = document.getElementById("pass").value;
+            //alert(username + password)
             var webMethod = "ProjectServices.asmx/LogOn";
             // I THINK ALL WE NEED TO DO IS FIGURE OUT HOW TO PROPERLY FORMAT THE LINE BELOW
-            var parameters = { "uid": username, "pass": password };
+            var parameters = "{\"uid\":\"" + encodeURI(username) + "\",\"pass\":\"" + encodeURI(password) + "\"}";
 
 			//jQuery ajax method
 			$.ajax({
@@ -26,13 +27,16 @@
 				contentType: "application/json; charset=utf-8",
 				dataType: "json",
 				success: function (msg) {
-                    var responseFromServer = msg.d;
-                    alert(responseFromServer);
-                    //if (responsefromserver == "success") {
-                    //    window.location.href = "./search_page.html"
-                    //} else {
-                    //    alert("failed login!")
-                    //};
+                    if (msg.d) {
+                        //server replied true
+                        //validated credentials, can now redirect to homepage
+                        window.location.href = "./search_page.html";
+                    }
+                    // server replied false, cannot validate        
+                    else {
+                        alert("Login Failed. Try Again.")
+
+                    }
                       
 				},
 				error: function (e) {
@@ -51,7 +55,7 @@
     <center>
         <h3>Login Here</h3>
 
-        <form>
+        <form onsubmit="LogOn($('#user').val(), $('#pass').val()); return false;">
             <table>
                 <tr>
                     <td>Username:</td>
@@ -68,7 +72,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button onclick="javascript: LogOn();">Sign In</button>
+                        <button type="submit">Sign In</button>
                     </td>
                 </tr>
             </table>
