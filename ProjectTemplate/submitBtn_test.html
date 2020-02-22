@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>API Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function SearchZip(zip_search) {
+
+            var webMethod = "ProjectServices.asmx/SearchRequest";
+            var parameters = "{\"zip\":\"" + encodeURI(zip_search) + "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    alert("success!");
+                    console.log(msg.d);
+                },
+                error: function (e) {
+                    alert("this code will only execute if javascript is unable to access the webservice");
+                }
+            });
+        }
+    </script>
+
+</head>
+
+<body>
+    <form onsubmit="SearchZip($('#zip_code').val()); return false;">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" name="zip_code" id="user" />
+                </td>
+                <td>
+                    <button type="submit">Search</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

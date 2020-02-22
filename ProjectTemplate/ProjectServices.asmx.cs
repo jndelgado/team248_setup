@@ -6,6 +6,7 @@ using System.Web.Services;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Data;
+using RestSharp;
 
 namespace ProjectTemplate
 {
@@ -107,5 +108,18 @@ namespace ProjectTemplate
             //return the result!
             return success;
         }
+
+        [WebMethod]
+        public string SearchRequest(string zip)
+        {
+            var client = new RestClient("https://api.census.gov/data/2018/acs/acs5?get=B01002_001E&for=zip%20code%20tabulation%20area:" + zip);
+
+            var response = client.Execute(new RestRequest());
+
+            return response.Content;
+            
+        }
+
+
     }
 }
