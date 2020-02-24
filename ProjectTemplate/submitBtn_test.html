@@ -13,22 +13,26 @@
 
             var webMethod = "ProjectServices.asmx/SearchRequest";
             var parameters = "{\"zip\":\"" + encodeURI(zip_search) + "\"}";
+            var rtn = "";
 
             //jQuery ajax method
             $.ajax({
                 type: "POST",
+                async: false,
                 url: webMethod,
                 data: parameters,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    alert("success!");
-                    console.log(msg.d);
+                    rtn = msg.d;
+                    //alert(msg[0]);
+                    //console.log(msg[0]);
                 },
                 error: function (e) {
                     alert("this code will only execute if javascript is unable to access the webservice");
                 }
             });
+            return console.log(rtn);
         }
     </script>
 

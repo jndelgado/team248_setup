@@ -95,6 +95,7 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="login_page.html" />
+    <Content Include="Map.html" />
     <Content Include="search_page.html" />
     <Content Include="index.html" />
     <Content Include="maps.jpg" />
