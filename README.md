@@ -13,5 +13,6 @@
  - Log in page active with webmethod verification. Account verification redirects to Search Page.
  - Added results page
  - Added map to map div
+   - Added map functionality
 
 *****************

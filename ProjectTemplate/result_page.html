@@ -3,27 +3,16 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="
-			default-src 	'self' data: gap: ws: file://* * 'unsafe-inline'
-								https://*.gstatic.com
-								https://*.phonegap.com
-								https://*.googleapis.com;
-			style-src 		'self' 'unsafe-inline'
-								https://fonts.googleapis.com;
-			script-src  	'self' 'unsafe-inline' 'unsafe-eval'
-								https://*.phonegap.com
-								https://*.googleapis.com;
-		    font-src    	'self'
-		           				https://*.gstatic.com;
-			media-src 		'self' blob: *;
-			img-src   		'self' data: *;
-			connect-src 	* ;" />
+
     <title>Census Report</title>
     <!--DO NOT FORGET THIS SCRIPT TAG SO YOU CAN USE JQUERY!!!!!-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!--YOUR OWN JAVASCRIPT CAN GO RIGHT HERE-->
     <script type="text/javascript">
+
+        var zip = "";
+        var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBD-_cAjEeERk8wlcnRSeHcQai-AkeyXf4&q=85282";
 
         function search(zipCode) {
             var webMethod = "ProjectServices.asmx/TestConnection";
@@ -37,7 +26,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    window.location.href = "./result_page.html";
+                    //window.location.href = "./result_page.html";
                 },
                 // server replied false, cannot validate
 
@@ -47,16 +36,15 @@
             });
         }
 
-        function initMap() {
-            var mapElement = document.getElementById('mapDiv');
+        function mapSearch(zip) {
+            document.getElementById("map_frame").src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBD-_cAjEeERk8wlcnRSeHcQai-AkeyXf4&q=" + zip;
+        }
 
-            var geoLocationASU = { lat: 33.4166317, lng: -111.9341069 };
-            var mapOptions = { zoom: 18, center: geoLocationASU };
+        function onload() {
+            document.getElementById("map_frame").src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBD-_cAjEeERk8wlcnRSeHcQai-AkeyXf4&q=85282";
+        }
 
-            var mapper = new google.maps.Map(mapElement, mapOptions);
-
-            var markerOptions = { position: geoLocationASU, map: mapper };
-            var marker = new google.maps.Marker(markerOptions);
+        
 
     </script>
     <!--END OF YOUR OWN JAVASCRIPT-->
@@ -141,14 +129,14 @@
     </style>
 </head>
 
-<body>
+<body onload="onload()">
     <header class="header">
         <div>
             <h1>Census Data</h1>
         </div>
     </header>
 
-    <form action="/action_page.php" class="container" onsubmit="search($('#zipCode').val()); return false;">
+    <form action="/action_page.php" class="container" onsubmit="search($('#zipCode').val()) & mapSearch($('#zipCode').val()); return false;" >
         <h1>Search Here</h1>
 
         <label for="zip"><b>Zip Code Search</b></label>
@@ -159,7 +147,8 @@
     <div class="google-map" id="mapDiv">
         <h1>Maps</h1>
         <iframe 
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBD-_cAjEeERk8wlcnRSeHcQai-AkeyXf4&q=85282" allowfullscreen>
+                id="map_frame"
+                allowfullscreen>
         </iframe>
     </div>
 
@@ -167,9 +156,6 @@
         <h1>Graph</h1>
         
     </div>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7e1P_eSIAOa_Q2bNVJJwj1bV43cmsyY&callback=initMap">
-    </script>
 
 </body>
 </html>
