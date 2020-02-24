@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="
+			default-src 	'self' data: gap: ws: file://* * 'unsafe-inline'
+								https://*.gstatic.com
+								https://*.phonegap.com
+								https://*.googleapis.com;
+			style-src 		'self' 'unsafe-inline'
+								https://fonts.googleapis.com;
+			script-src  	'self' 'unsafe-inline' 'unsafe-eval'
+								https://*.phonegap.com
+								https://*.googleapis.com;
+		    font-src    	'self'
+		           				https://*.gstatic.com;
+			media-src 		'self' blob: *;
+			img-src   		'self' data: *;
+			connect-src 	* ;" />
+    <title>Census Report</title>
+    <!--DO NOT FORGET THIS SCRIPT TAG SO YOU CAN USE JQUERY!!!!!-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--YOUR OWN JAVASCRIPT CAN GO RIGHT HERE-->
+    <script type="text/javascript">
+
+        function search(zipCode) {
+            var webMethod = "ProjectServices.asmx/TestConnection";
+            var parameters = "{\"uid\":\"" + encodeURI(zipCode) + "\"}";
+
+            //jQuery ajax method
+            $.ajax({
+                type: "POST",
+                url: webMethod,
+                data: parameters,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    window.location.href = "./result_page.html";
+                },
+                // server replied false, cannot validate
+
+                error: function (e) {
+                    alert("this code will only execute if javascript is unable to access the webservice");
+                }
+            });
+        }
+
+        function initMap() {
+            var mapElement = document.getElementById('mapDiv');
+
+            var geoLocationASU = { lat: 33.4166317, lng: -111.9341069 };
+            var mapOptions = { zoom: 18, center: geoLocationASU };
+
+            var mapper = new google.maps.Map(mapElement, mapOptions);
+
+            var markerOptions = { position: geoLocationASU, map: mapper };
+            var marker = new google.maps.Marker(markerOptions);
+
+    </script>
+    <!--END OF YOUR OWN JAVASCRIPT-->
+    <style>
+        .header {
+            padding: 1px;
+            text-align: left;
+            background: #1abc9c;
+            color: navajowhite;
+            font-size: 15px;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add styles to the form container */
+        .container {
+            position: absolute;
+            left: 20px;
+            margin: 20px;
+            max-width: 300px;
+            padding: 16px;
+            background-color: lightgrey;
+        }
+
+        .google-map {
+            position: absolute;
+            right: 40px;
+            margin: 20px;
+            height: 400px;
+            width: 400px;
+            padding: 16px;
+            background-color: lightblue;
+            border: 3px solid #73AD21;
+        }
+
+        .graph {
+            position: absolute;
+            right: 450px;
+            margin: 20px;
+            height: 400px;
+            width: 400px;
+            padding: 16px;
+            background-color: lightyellow;
+            border: 3px solid #73AD21;
+        }
+
+        /* Full-width input fields */
+        input[type=text] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+            input[type=text]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+        /* Set a style for the submit button */
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+            .btn:hover {
+                opacity: 1;
+            }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div>
+            <h1>Census Data</h1>
+        </div>
+    </header>
+
+    <form action="/action_page.php" class="container" onsubmit="search($('#zipCode').val()); return false;">
+        <h1>Search Here</h1>
+
+        <label for="zip"><b>Address</b></label>
+        <input type="text" placeholder="Enter cities/states/zip codes" name="zip" id="zipCode" required>
+
+        <button type="submit" class="btn">Search</button>
+    </form>
+
+    <div class="google-map" id="mapDiv">
+        <h1>Maps</h1>
+    </div>
+
+    <div class="graph">
+        <h1>Graph</h1>
+        
+    </div>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAH7e1P_eSIAOa_Q2bNVJJwj1bV43cmsyY&callback=initMap">
+    </script>
+
+</body>
+</html>
