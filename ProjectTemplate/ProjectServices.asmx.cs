@@ -10,10 +10,10 @@ using RestSharp;
 
 namespace ProjectTemplate
 {
-	[WebService(Namespace = "http://tempuri.org/")]
-	[WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-	[System.ComponentModel.ToolboxItem(false)]
-	[System.Web.Script.Services.ScriptService]
+    [WebService(Namespace = "http://tempuri.org/")]
+    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [System.ComponentModel.ToolboxItem(false)]
+    [System.Web.Script.Services.ScriptService]
 
 	public class ProjectServices : System.Web.Services.WebService
 	{
@@ -117,7 +117,12 @@ namespace ProjectTemplate
             var response = client.Execute(new RestRequest());
 
             return response.Content;
-            
+        }
+
+        [WebMethod]
+        public bool AddSearch(string uid, string zip)
+        {
+            return true;
         }
 
 

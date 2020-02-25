@@ -15,8 +15,8 @@
         var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBD-_cAjEeERk8wlcnRSeHcQai-AkeyXf4&q=85282";
 
         function search(zipCode) {
-            var webMethod = "ProjectServices.asmx/TestConnection";
-            var parameters = "{\"uid\":\"" + encodeURI(zipCode) + "\"}";
+            var webMethod = "ProjectServices.asmx/SearchRequest";
+            var parameters = "{\"zip\":\"" + encodeURI(zipCode) + "\"}";
 
             //jQuery ajax method
             $.ajax({
@@ -27,6 +27,8 @@
                 dataType: "json",
                 success: function (msg) {
                     //window.location.href = "./result_page.html";
+                    //alert(JSON.parse(msg))
+                    alert(JSON.parse(msg.d));
                 },
                 // server replied false, cannot validate
 
