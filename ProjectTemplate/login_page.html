@@ -13,11 +13,7 @@
 
         // Figure out how to pass parameters uid and pass into WebMethod "LogOn" found in ProjectServices.asmx
         function LogOn(username, password) {
-            //var username = document.getElementById("user").value;
-            //var password = document.getElementById("pass").value;
-            //alert(username + password)
             var webMethod = "ProjectServices.asmx/LogOn";
-            // I THINK ALL WE NEED TO DO IS FIGURE OUT HOW TO PROPERLY FORMAT THE LINE BELOW
             var parameters = "{\"uid\":\"" + encodeURI(username) + "\",\"pass\":\"" + encodeURI(password) + "\"}";
 
             //jQuery ajax method
@@ -111,18 +107,16 @@
     <div class="login">
     <h1>Login Here</h1>
     <form onsubmit="LogOn($('#user').val(), $('#pass').val()); return false;">
-        <table>
-            <div class="text">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <input type="text" placeholder="Username" name="user" id="user" />
-            </div>
+        <div class="text">
+            <i class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" placeholder="Username" name="user" id="user" />
+        </div>
 
-            <div class="text">
-                <i class="fa fa-unlock" aria-hidden="true"></i>
-                <input type="password" placeholder="Password" name="user_pass" id="pass"/>
-            </div>
-
-            <button class="button" type="submit">Sign In</button>
+        <div class="text">
+            <i class="fa fa-unlock" aria-hidden="true"></i> 
+            <input type="password" placeholder="Password" name="user_pass" id="pass"/>
+        </div>
+        <button class="button" type="submit">Sign In</button>
     </form>
     </div>
 </body>
