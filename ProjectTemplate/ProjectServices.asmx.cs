@@ -117,13 +117,15 @@ namespace ProjectTemplate
             var response = client.Execute(new RestRequest());
 
             return response.Content;
+
+
         }
 
-        [WebMethod]
-        public bool AddSearch(string uid, string zip)
-        {
-            return true;
-        }
+        //[WebMethod]
+        //public bool AddSearch(string uid, string zip)
+        //{
+        //    return true;
+        //}
 
 
     }
