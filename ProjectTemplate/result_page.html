@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Census Report</title>
+    <title>Geos on Demos</title>
     <!--DO NOT FORGET THIS SCRIPT TAG SO YOU CAN USE JQUERY!!!!!-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
@@ -51,6 +51,15 @@
     </script>
     <!--END OF YOUR OWN JAVASCRIPT-->
     <style>
+        html {
+            background: url(maps_night.jpg) no-repeat center center fixed;
+            background-size: auto;
+            height: 100%;
+            overflow: hidden;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
         .header {
             padding: 1px;
             text-align: left;
@@ -119,7 +128,7 @@
             float: left;
             padding: 1%;
             border-radius: 10px;
-            border: 4px solid white;
+            border: 7px solid transparent;
             font-family: sans-serif;
         }
 
@@ -204,41 +213,39 @@
 
 <body onload="onload()">
     <header class="header">
-        <div class="col-12 green">
-            <h1>Census Data</h1>
-        </div>
-    </header>
 
-    <div class="col-12"><h4>&nbsp;</h4></div>
+        <h1>Geos on Demos</h1>
+
+    </header>
 
     <div class="col-01"><h2>&nbsp;</h2></div>
 
     <form action="/action_page.php" class="col-02 grey" onsubmit="search($('#zipCode').val()) & mapSearch($('#zipCode').val()); return false;">
-        <h2>Search Here</h2>
 
         <label for="zip"><b>Zip Code Search</b></label>
         <input type="text" placeholder="Enter Zipcodes (default ex: 85282)" name="zip" id="zipCode" required>
         <button type="submit" class="btn">Search</button>
     </form>
-
-    <div class="col-04 yellow" id="mapDiv">
-        <h2>Maps</h2>
-        <iframe id="map_frame" allowfullscreen class="col-08"></iframe>
-    </div>
-
-    <div class="col-04 yellow">
-        <h2>Graph</h2>
-        <iframe id="graph_frame" class="col-08"></iframe>
-    </div>
-
     <div class="col-01"><h2>&nbsp;</h2></div>
 
-    <div class="col-12"><h3>&nbsp;</h3></div>
+    <iframe id="map_frame" allowfullscreen class="col-06" width="200" height="200"></iframe>
 
-    <footer class="footer">
-        <div class="col-12 green">
-            <h2>Footer</h2>
-        </div>
-    </footer>
+
+    <div class="col-02"><h2>&nbsp;</h2></div>
+    <div class="col-02"><h2>&nbsp;</h2></div>
+
+    <div class="col-04"><h2>&nbsp;</h2></div>
+
+    <div class="col-06 yellow">
+
+        <iframe id="graph_frame" class="col-05"></iframe>
+    </div>
+
+    <div class="col-02"><h2>&nbsp;</h2></div>
+
+    <div class="col-12"><h2>&nbsp;</h2></div>
+
+
+
 </body>
 </html>
