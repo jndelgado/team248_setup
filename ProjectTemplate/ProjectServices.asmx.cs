@@ -145,12 +145,5 @@ namespace ProjectTemplate
         }
 
 
-        //[WebMethod]
-        //public bool AddSearch(string uid, string zip)
-        //{
-        //    return true;
-        //}
-
-
     }
 }
