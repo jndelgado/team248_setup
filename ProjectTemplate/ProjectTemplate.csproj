@@ -93,9 +93,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chart_test.html" />
     <Content Include="Global.asax" />
     <Content Include="login_page.html" />
     <Content Include="Map.html" />
+    <Content Include="result_page - Copy.html" />
     <Content Include="result_page.html" />
     <Content Include="search_page.html" />
     <Content Include="index.html" />
