@@ -120,10 +120,9 @@ namespace ProjectTemplate
         [WebMethod]
         public string SearchRequest(string zip)
         {
-            var client = new RestClient("https://api.census.gov/data/2018/acs/acs5?get=B01002_001E&for=zip%20code%20tabulation%20area:" + zip);
+            var client = new RestClient("https://api.census.gov/data/2018/acs/acs5/profile?get=DP05_0002PE,DP05_0003PE,DP05_0018E&for=zip%20code%20tabulation%20area:" + zip);
 
             var response = client.Execute(new RestRequest());
-
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 
             string sqlSelect = "INSERT INTO searches (zip) VALUES (@zip)";
@@ -133,17 +132,11 @@ namespace ProjectTemplate
             MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
 
             sqlCommand.Parameters.AddWithValue("@zip", HttpUtility.UrlDecode(zip));
-           
+
 
             MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
             DataTable sqlDt = new DataTable();
             sqlDa.Fill(sqlDt);
 
             return response.Content;
-
-
         }
-
-
-    }
-}
