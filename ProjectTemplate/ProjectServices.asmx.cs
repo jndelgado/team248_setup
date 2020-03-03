@@ -7,6 +7,10 @@ using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Data;
 using RestSharp;
+using System.Configuration;
+using System.Data.SqlClient;
+
+
 
 namespace ProjectTemplate
 {
@@ -66,6 +70,7 @@ namespace ProjectTemplate
 
         // Log On WebMethod
         [WebMethod]
+        // ----- change return type from bool to int
         public bool LogOn(string uid, string pass)
         {
             //LOGIC: pass the parameters into the database to see if an account
@@ -107,6 +112,9 @@ namespace ProjectTemplate
             }
             //return the result!
             return success;
+
+
+            // ------- 
         }
 
         [WebMethod]
@@ -116,10 +124,26 @@ namespace ProjectTemplate
 
             var response = client.Execute(new RestRequest());
 
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            string sqlSelect = "INSERT INTO searches (zip) VALUES (@zip)";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@zip", HttpUtility.UrlDecode(zip));
+           
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+            sqlDa.Fill(sqlDt);
+
             return response.Content;
 
 
         }
+
 
         //[WebMethod]
         //public bool AddSearch(string uid, string zip)

@@ -13,8 +13,13 @@
 
         var zip = "";
         var url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyBD-_cAjEeERk8wlcnRSeHcQai-AkeyXf4&q=85282";
+        //var today = new Date();
+        //var d = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        //var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        //var date = d + ' ' + time;
 
-        function search(zipCode) {
+
+        function search(zipCode, date) {
             var webMethod = "ProjectServices.asmx/SearchRequest";
             var parameters = "{\"zip\":\"" + encodeURI(zipCode) + "\"}";
 
