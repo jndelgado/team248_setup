@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+        html {
+            background: url(maps_night.jpg) no-repeat center center fixed;
+            background-size: auto;
+            height: 100%;
+            overflow: hidden;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
+
+        form {
+            max-width: 420px;
+            max-height: 505px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-size: 50px;
+            text-align: center;
+            color: whitesmoke;
+            margin-bottom: 5px;
+            clear: both;
+        }
+
+        h2 {
+            clear: both;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            text-align: center;
+            color: whitesmoke;
+            margin-bottom: 5px;
+        }
+
+        .header a {
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            color: whitesmoke;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+            border: 2px solid transparent;
+        }
+
+            .header a:hover {
+                border: 2px solid #00ff90;
+                transition-delay: 0.1s;
+            }
+
+        .header-right {
+            float: right;
+        }
+
+        .feedback-input {
+            color: white;
+            font-family: Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            border-radius: 5px;
+            line-height: 22px;
+            background-color: transparent;
+            border: 2px solid whitesmoke;
+            transition: all 0.3s;
+            padding: 13px;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            outline: 0;
+        }
+
+            .feedback-input:focus {
+                border: 2px solid #00ff90;
+            }
+
+    textarea {
+        height: 150px;
+        line-height: 150%;
+        resize: vertical;
+        }
+
+        [type="submit"] {
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            width: 100%;
+            background: #2eb363;
+            border-radius: 5px;
+            border: 0;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            transition: all 0.3s;
+            margin-top: -4px;
+            font-weight: 700;
+        }
+
+            [type="submit"]:hover {
+                background: #1e7842;
+            }
+    </style>
+
+</head>
+<header class="header">
+    <div class="header-right">
+        <a href="./result_page.html">Home</a>
+        <a href="./contact_page.html">Contact Us</a>
+        <a href="./login_page.html">Log Out</a>
+    </div>
+    <h1>Contact Us</h1>
+    <h2>Any questions, comments, or concerns? We'd love to hear from you.</h2>
+</header>
+<body>
+        <form>
+            <input name="name" type="text" class="feedback-input" placeholder="Name" />
+            <input name="email" type="text" class="feedback-input" placeholder="Email" />
+            <textarea name="text" class="feedback-input" placeholder="Comment"></textarea>
+            <input type="submit" value="SUBMIT" />
+        </form>
+</body>
+</html>

@@ -141,5 +141,29 @@ namespace ProjectTemplate
 
             return response.Content;
         }
+
+        [WebMethod]
+        public  void NewAccount(string user_name, string password, string email)
+        {
+            string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
+
+            string sqlSelect = "INSERT INTO users (user_name, password, email) VALUES (@user_name, @password, @email)";
+
+            MySqlConnection sqlConnection = new MySqlConnection(sqlConnectString);
+
+            MySqlCommand sqlCommand = new MySqlCommand(sqlSelect, sqlConnection);
+
+            sqlCommand.Parameters.AddWithValue("@user_name", HttpUtility.UrlDecode(user_name));
+            sqlCommand.Parameters.AddWithValue("@password", HttpUtility.UrlDecode(password));
+            sqlCommand.Parameters.AddWithValue("@email", HttpUtility.UrlDecode(email));
+
+
+            MySqlDataAdapter sqlDa = new MySqlDataAdapter(sqlCommand);
+            DataTable sqlDt = new DataTable();
+            sqlDa.Fill(sqlDt);
+
+
+        }
+
     }
 }

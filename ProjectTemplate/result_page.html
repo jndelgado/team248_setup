@@ -148,6 +148,9 @@
     </script>
     <!--END OF YOUR OWN JAVASCRIPT-->
     <style>
+
+        @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
         html {
             background: url(maps_night.jpg) no-repeat center center fixed;
             background-size: auto;
@@ -158,20 +161,56 @@
             -o-background-size: cover;
         }
 
+
         .header {
-            padding: 1px;
-            text-align: left;
-            color: navajowhite;
-            font-size: 15px;
+            overflow: hidden;
+            padding: 30px 20px;
+            border: 2px solid whitesmoke;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+
+            .header a {
+                float: left;
+                color: whitesmoke;
+                text-align: center;
+                padding: 12px;
+                text-decoration: none;
+                font-size: 18px;
+                line-height: 25px;
+                border-radius: 4px;
+                border: 2px solid transparent;
+            }
+
+            
+                .header a.name {
+                    font-size: 40px;
+                    font-weight: bold;
+                }
+
+                .header a:hover:not(.name) {
+                    border: 2px solid #00ff90;
+                    transition-delay: 0.1s;
+                }
+
+        .header-right {
+            float: right;
         }
 
         body, html {
             height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            ;
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        #searchForm {
+            margin-top: 20px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
         }
 
         .ct-label {
@@ -291,13 +330,13 @@
             width: 400px;
             padding: 16px;
             background-color: lightblue;
-            border: 3px solid #73AD21;
+            border: 1px solid whitesmoke;
         }
 
         .graph {
             position: absolute;
             right: 450px;
-            margin: 20px;s
+            margin: 20px;
             height: 400px;
             width: 400px;
             padding: 16px;
@@ -310,18 +349,18 @@
             width: 100%;
             padding: 15px;
             margin: 5px 0 22px 0;
-            border: none;
+            border: 2px solid transparent;
             background: #f1f1f1;
         }
 
             input[type=text]:focus {
-                background-color: #ddd;
-                outline: none;
+                border: 2px solid #00ff90;
             }
 
         /* Set a style for the submit button */
         .btn {
             background-color: #4CAF50;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
             color: white;
             padding: 16px 20px;
             border: none;
@@ -340,13 +379,18 @@
 <body onload="onload()">
     <header class="header">
 
-        <h1>Geos on Demos</h1>
+        <a class="name" href="./result_page.html">Demos on Geos</a>
+        <div class="header-right">
+            <a href="./result_page.html">Home</a>
+            <a href="./contact_page.html">Contact Us</a>
+            <a href="./login_page.html">Log Out</a>
+        </div>
 
     </header>
 
     <div class="col-01"><h2>&nbsp;</h2></div>
 
-        <form action="/action_page.php" class="col-02 grey" onsubmit="search($('#zipCode').val()) & mapSearch($('#zipCode').val()); return false;">
+        <form id="searchForm" action="/action_page.php" class="col-02 grey" onsubmit="search($('#zipCode').val()) & mapSearch($('#zipCode').val()); return false;">
 
             <label for="zip"><b>Zip Code Search</b></label>
             <input type="text" placeholder="Enter Zipcodes (default ex: 85282)" name="zip" id="zipCode" required>
