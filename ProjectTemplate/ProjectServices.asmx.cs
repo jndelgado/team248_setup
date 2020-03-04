@@ -142,8 +142,8 @@ namespace ProjectTemplate
             return response.Content;
         }
 
-        [WebMethod]
-        public  void NewAccount(string user_name, string password, string email)
+        [WebMethod(EnableSession = true)]
+        public void NewAccount(string user_name, string password, string email)
         {
             string sqlConnectString = System.Configuration.ConfigurationManager.ConnectionStrings["myDB"].ConnectionString;
 

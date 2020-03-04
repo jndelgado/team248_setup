@@ -5,11 +5,14 @@
     <meta charset="utf-8" />
     <title>Create Account</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script>
         function NewAccount(user_name, password, email) {
             var webMethod = "ProjectServices.asmx/NewAccount";
-            var parameters = "{\"user_name\":\"" + encodeURI(user_name) + "\",\"password\":\"" + encodeURI(password) + "\",\"email\":\"" + encodeURI(email) +  "\"}";
+            var parameters = "{\"user_name\":\"" + encodeURI(user_name) + "\",\"password\":\"" + encodeURI(password) + "\",\"email\":\"" + encodeURI(email) + "\"}";
 
+            //alert("RUNNING");
             //jQuery ajax method
             $.ajax({
                 type: "POST",
@@ -83,11 +86,11 @@
             outline: 0;
         }
 
-            .feedback-input:focus {
-                border: 2px solid #00ff90;
-            }
+        .feedback-input:focus {
+            border: 2px solid #00ff90;
+        }
 
-        [type="submit"] {
+        button {
             font-family: 'Montserrat', Arial, Helvetica, sans-serif;
             width: 100%;
             background: #2eb363;
@@ -103,9 +106,31 @@
             font-weight: 700;
         }
 
-            [type="submit"]:hover {
+            button:hover {
                 background: #1e7842;
             }
+
+            button.existing {
+                font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+                width: 100%;
+                background: transparent;
+                border: 2px solid #2eb363;
+                cursor: pointer;
+                color: white;
+                font-size: 20px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-top: 5px;
+                transition: all 0.3s;
+                margin-top: 8px;
+                font-weight: 700;
+            }
+
+            button.existing:hover {
+                background: #1e7842;
+            }
+
+        
     </style>
 
 </head>
@@ -115,9 +140,10 @@
 <body>
     <form onsubmit="NewAccount($('#user_name').val(), $('#password').val(), $('#email').val()); return false;">
         <input id="user_name" type="text" class="acc-input" placeholder="new username" />
-        <input id="password" type="password" class="acc-input" placeholder="new password"/>
+        <input id="password" type="password" class="acc-input" placeholder="new password" />
         <input id="email" type="text" class="acc-input" placeholder="new email" />
         <button type="submit">Create Account</button>
+        <button class="existing" onclick="window.location.href='./login_page.html'"> I already have an account</button>
     </form>
 </body>
 </html>
